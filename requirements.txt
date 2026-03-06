@@ -1,0 +1,16 @@
+﻿# Tracking Insetti (Bees Pipeline) - requirements
+# Install with: pip install -r requirements.txt
+
+# Core CV and tracking
+opencv-python>=4.8
+filterpy>=1.4
+scipy>=1.11
+
+# Data and visualization
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+
+# GPU optional (choose the variant matching your CUDA version)
+# cupy-cuda12x
+# cupy-cuda11x

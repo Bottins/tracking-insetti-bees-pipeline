@@ -1,0 +1,44 @@
+﻿\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\title{Behavioral Video Analytics via Multi-Object Tracking and Heatmap Statistics}
+\author{Open-Source Research Note}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We describe an open-source computer-vision pipeline for insect/bee behavioral analysis from experimental videos. The system combines preprocessing, detection, Kalman-based tracking, assignment by linear optimization, and downstream spatial-temporal summaries.
+\end{abstract}
+
+\section{Problem Statement}
+Given video frames $I_t$, estimate trajectories $\{x_t^{(n)}\}$ for multiple moving agents and compare behavioral patterns across conditions (e.g., pre/post treatment, concentration levels).
+
+\section{Formalization}
+Detection yields candidate centroids $d_t^j$. For each track $n$, a Kalman predictor gives
+\[
+\hat{x}_{t|t-1}^{(n)}=A x_{t-1|t-1}^{(n)}.
+\]
+Assignment minimizes total cost over bipartite match matrix $\pi$:
+\[
+\min_{\pi}\sum_{n,j} c\big(\hat{x}_{t|t-1}^{(n)},d_t^j\big)\,\pi_{n,j},
+\]
+subject to one-to-one constraints (Hungarian algorithm). Track states are then updated by Kalman correction. Spatial occupancy is summarized by 2D histograms
+\[
+H_{ab}=\sum_t\sum_n \mathbf{1}\{x_t^{(n)}\in \mathcal{B}_{ab}\},
+\]
+and compared between conditions through normalized heatmaps and derived metrics (mobility, dispersion, zone preference).
+
+\section{Research Contribution}
+The pipeline provides a reproducible and scalable framework for behavioral quantification from raw videos, with explicit separation between data ingestion, tracking, and statistical post-analysis.
+
+\begin{thebibliography}{9}
+\bibitem{kalman1960} R. E. Kalman, ``A New Approach to Linear Filtering and Prediction Problems,'' \emph{ASME J. Basic Eng.}, 1960.
+\bibitem{kuhn1955} H. W. Kuhn, ``The Hungarian Method for the Assignment Problem,'' \emph{Naval Research Logistics Quarterly}, 1955.
+\bibitem{bewley2016} A. Bewley et al., ``Simple Online and Realtime Tracking,'' \emph{ICIP Workshops}, 2016.
+\bibitem{bradski2000} G. Bradski, ``The OpenCV Library,'' \emph{Dr. Dobb's Journal}, 2000.
+\bibitem{branson2009} K. Branson et al., ``High-throughput ethomics in large groups of Drosophila,'' \emph{Nature Methods}, 2009.
+\end{thebibliography}
+
+\end{document}
