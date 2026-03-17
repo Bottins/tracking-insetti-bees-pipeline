@@ -270,7 +270,7 @@ If using this pipeline in academic work, please cite:
 
 ```bibtex
 @software{bottini2026bee_tracking,
-  author = {Bottini, Alessandro},
+  author = {Bottino, Alessandro},
   title = {Insect Behavioral Tracking Pipeline: Multi-Object Tracking and Behavioral Quantification for Experimental Ethology},
   year = {2026},
   url = {https://github.com/Bottins/tracking-insetti-bees-pipeline}
@@ -293,6 +293,6 @@ If using this pipeline in academic work, please cite:
 
 ---
 
-**Author**: Alessandro Bottini
+**Author**: Alessandro Bottino
 **Last Updated**: March 2026
 **Repository**: [github.com/Bottins/tracking-insetti-bees-pipeline](https://github.com/Bottins/tracking-insetti-bees-pipeline)
